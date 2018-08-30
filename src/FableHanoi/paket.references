@@ -1,2 +1,5 @@
 Fable.Core
 Fable.Import.Browser
+Fable.Elmish.React
+Fable.Elmish.Debugger
+Fable.Elmish.HMR

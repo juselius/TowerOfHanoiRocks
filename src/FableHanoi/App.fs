@@ -1,19 +1,38 @@
 module FsHanoi
 
 open Fable.Core
-open Fable.Core.JsInterop
-open Fable.Import
+open Fable.Helpers.React
+open Elmish
+open Elmish.React
 
-let init() =
-    let canvas = Browser.document.getElementsByTagName_canvas().[0]
-    canvas.width <- 1000.
-    canvas.height <- 800.
-    let ctx = canvas.getContext_2d()
-    // The (!^) operator checks and casts a value to an Erased Union type
-    // See http://fable.io/docs/interacting.html#Erase-attribute
-    ctx.fillStyle <- !^"rgb(200,0,0)"
-    ctx.fillRect (10., 10., 55., 50.)
-    ctx.fillStyle <- !^"rgba(0, 0, 200, 0.5)"
-    ctx.fillRect (30., 30., 55., 50.)
+type Model = {
+    hanoi : string    
+    }
 
-init()
+type Msg =
+    | Run
+
+let init () : Model * Cmd<Msg> =
+    { hanoi = "" }, Cmd.none
+
+let update (msg : Msg) (model : Model) : Model * Cmd<Msg> =
+    model, Cmd.none
+
+let view (model : Model) (dispatch : Msg -> unit) =
+    div [] []
+
+#if DEBUG
+open Elmish.Debug
+open Elmish.HMR
+#endif
+
+Program.mkProgram init update view
+#if DEBUG
+|> Program.withConsoleTrace
+|> Program.withHMR
+#endif
+|> Program.withReact "elmish-app"
+#if DEBUG
+|> Program.withDebugger
+#endif
+|> Program.run
