@@ -41,7 +41,7 @@ module Hanoi =
 
     let view (model : Model) (dispatch : Msg -> unit) =
         div [] [
-            Widgets.navbar
+            Views.navbar
             Container.container [] [
                 Content.content [] [
                     h2 [] [ str "Hello Hanoi!" ]
@@ -70,7 +70,7 @@ module Hanoi =
                     ] [ str "Less"] 
                 br []
             ]
-            Widgets.footer
+            Views.footer
         ]
 
     #if DEBUG

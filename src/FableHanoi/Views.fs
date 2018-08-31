@@ -1,6 +1,6 @@
 namespace FsHanoi 
 
-module Widgets =
+module Views =
     open Fable.Helpers.React
     open Fulma
 
@@ -18,5 +18,5 @@ module Widgets =
                     Modifier.TextAlignment 
                         (Screen.All, TextAlignment.Centered) 
                 ] 
-            ] [ str "May the foo be with you!" ] 
+            ] [ h4 [] [ str "May the foo be with you!" ] ]
         ] 
