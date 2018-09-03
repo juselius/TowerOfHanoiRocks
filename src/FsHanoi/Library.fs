@@ -5,15 +5,15 @@ open System
 module TowerOfHanoi =
     type TowerOfHanoi = {
         numDisks : int
-        }
+    }
 
-    let rec moveTowerUnsafe n from ``to`` other =
-        if n.numDisks > 0 then
-            let n' = { n with numDisks = n.numDisks - 1 }
-            moveTowerUnsafe n' from other ``to``
-            printfn "Move disk %d from %d -> %d" n.numDisks from ``to`` 
-            moveTowerUnsafe n'  other from ``to``
-        else
+    let rec moveTowerUnsafe n f t o =
+        if n > 0 then
+            let n' = n - 1
+            moveTowerUnsafe n' f o t
+            printfn "Move %d from %d to %d" n f t
+            moveTowerUnsafe n' o t f
+        else 
             ()
 
     let rec moveTower' n f t o r =
@@ -26,24 +26,21 @@ module TowerOfHanoi =
             r
 
     let moveTower n =
-        moveTower' n 1 2 3 [] |> List.rev 
+        moveTower' n 1 2 3 [] |> List.rev
 
-    let fizzbuzz n =
-        [1..n] |> List.map (
-            function
-            | n when n % 15 = 0 -> "Fizzbuzz(" + string n + ")"
-            | n when n % 5 = 0 -> "buzz(" + string n + ")"
-            | n when n % 3 = 0 -> "fizz(" + string n + ")"
+module Fizz =
+    let fizzbuzz n = 
+        [0..n] 
+        |> List.map (fun x ->
+            match x with
+            | n when n % 15 = 0 -> "fizzbuzz"
+            | n when n % 5 = 0 -> "buzz"
+            | n when n % 3 = 0 -> "fizz"
             | n -> string n
         )
 
 module Program =
     open TowerOfHanoi
-
     let main () =
-        let th = { numDisks = 3 }
-        printfn "%A" <| moveTowerUnsafe th 1 2 3
-        moveTower 3 |> List.iter (fun (n, f, t) -> 
-            printfn "Move disk %d from %d -> %d" n f t)
-        fizzbuzz 30 |> List.iter (printfn "%s")
-
+        let tower = { numDisks = 3 }
+        moveTowerUnsafe tower.numDisks 1 2 3
