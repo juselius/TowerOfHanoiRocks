@@ -4,13 +4,12 @@
 
 This project contains some simple and silly examples of how to use F# and Fable to create a reactive, client side web application. The project uses the following tools and libraries:
 
-* .NET Core 2.1
-* F#
-* Fable
-* Fable.Emlish
-* Fable.Emlish.React
-* Fable.Elmish.Debug (see Redux DevTools debugger)
-* Fulma (also see Bulma)
+* [.NET Core 2.1](https://www.microsoft.com/net/download/dotnet-core/2.1)
+* [F#](https://fsharp.org)
+* [Fable](http://fable.io/)
+* [Fable.Emlish](https://elmish.github.io/elmish/)
+* [Fable.Elmish.Debug](https://elmish.github.io/debugger/) 
+* [Fulma](https://mangelmaxime.github.io/Fulma/)
 
 
 ## Install
